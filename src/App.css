@@ -78,6 +78,24 @@
   display: none;
 }
 
+.checkout-button__loader::before,
+.checkout-button__loader::after {
+  content: '';
+  box-sizing: border-box;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: #f5f28e;
+  position: absolute;
+  left: 0;
+  top: 0;
+  animation: animloader 2s linear infinite;
+}
+
+.checkout-button__loader::after {
+  animation-delay: 1s;
+}
+
 @keyframes animloader {
   0% {
     transform: scale(0);
@@ -92,6 +110,11 @@
 @media (prefers-color-scheme: light) {
   .form-spinner::after,
   .form-spinner::before {
+    background: #a9a40f;
+  }
+
+  .checkout-button__loader::before,
+  .checkout-button__loader::after {
     background: #a9a40f;
   }
 }

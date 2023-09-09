@@ -9,7 +9,7 @@ export const getOrderByNumber = async (orderNumber) => {
 export const loader = async ({params}) => {
   const data = await getOrderByNumber(params.orderNumber);
 
-  if (document.referrer.length > 0 || data.error) {
+  if (data.error) {
     return redirect('/');
   }
 
