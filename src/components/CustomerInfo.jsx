@@ -18,8 +18,8 @@ const CustomerInfo = ({
    * @param {string} s - String to validate
    */
   const validateText = (s) => {
-    // const sub = s.substring(0, 255);
-    const regex = /^[a-zA-Z]+$/;
+    // should no be empty and should only contain letters, dashes, and spaces
+    const regex = /^[a-zA-Z- ]+$/;
 
     return regex.test(s.substring(0, 255));
   };
@@ -72,17 +72,17 @@ const CustomerInfo = ({
   return (
     <div className="customer-info grid grid-cols-2 justify-items-start gap-x-4 gap-y-6 mb-6">
       <label className="customer-info__first-name col-span-2 sm:col-span-1 flex flex-col items-start w-full">
-        <span className="customer-info__label font-medium mb-2 text-start">First Name</span>
+        <span className="customer-info__label font-medium mb-2 text-start">First Name <span className="text-tangerine-600">*</span></span>
         <input required placeholder="First Name" type="text" name="first-name" value={firstName} onChange={validateFirst} className="customer-info__input rounded-md w-full dark:text-gravel-800 focus:ring-maize-950 focus:border-maize-950 dark:focus:ring-maize-600 dark:focus:border-maize-600" />
         <p className="customer-info__input-err hidden text-start mt-1 text-xs text-tangerine-600">Required. Enter only up to 255 alphanumeric characters.</p>
       </label>
       <label className="customer-info__last-name col-span-2 sm:col-span-1 flex flex-col items-start w-full">
-        <span className="customer-info__label font-medium mb-2 text-start">Last Name</span>
+        <span className="customer-info__label font-medium mb-2 text-start">Last Name <span className="text-tangerine-600">*</span></span>
         <input required type="text" placeholder="Last Name" name="last-name" value={lastName} onChange={validateLast} className="customer-info__input rounded-md w-full dark:text-gravel-800 focus:ring-maize-950 focus:border-maize-950 dark:focus:ring-maize-600 dark:focus:border-maize-600" />
         <p className="customer-info__input-err hidden text-start mt-1 text-xs text-tangerine-600">Required. Enter only up to 255 alphanumeric characters.</p>
       </label>
       <label className="customer-info__email col-span-2 flex flex-col items-start w-full">
-        <span className="customer-info__label font-medium mb-2 text-start">Email</span>
+        <span className="customer-info__label font-medium mb-2 text-start">Email <span className="text-tangerine-600">*</span></span>
         <input required type="email" placeholder="Email" name="email" value={email} onChange={validateEmail} className="customer-info__input rounded-md w-full dark:text-gravel-800 focus:ring-maize-950 focus:border-maize-950 dark:focus:ring-maize-600 dark:focus:border-maize-600" />
         <p className="customer-info__input-err hidden text-start mt-1 text-xs text-tangerine-600">Required. Enter a valid email address.</p>
       </label>

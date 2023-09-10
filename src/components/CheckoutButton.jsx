@@ -32,7 +32,7 @@ const CheckoutButton = ({
         const {data} = res;
 
         checkoutUrl = data.checkout_url;
-        window.location.href = checkoutUrl;
+        // window.location.href = checkoutUrl;
       })
       .catch((err) => {
         if (err.response) {
@@ -51,7 +51,7 @@ const CheckoutButton = ({
   };
 
   const textIsValid = (s) => {
-    const regex = /^[a-zA-Z]+$/;
+    const regex = /^[a-zA-Z- ]+$/;
     return regex.test(s.substring(0, 255));
   };
 
