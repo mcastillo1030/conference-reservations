@@ -32,7 +32,7 @@ const CheckoutButton = ({
         const {data} = res;
 
         checkoutUrl = data.checkout_url;
-        // window.location.href = checkoutUrl;
+        window.location.href = checkoutUrl;
       })
       .catch((err) => {
         if (err.response) {
