@@ -3,6 +3,7 @@ import { useState } from 'react'
 import CustomerInfo from './CustomerInfo';
 import AmountInput from './AmountInput';
 import CheckoutButton from './CheckoutButton';
+import CostBreadown from './CostBreakdown';
 
 
 const FormContent = ({query}) => {
@@ -37,6 +38,7 @@ const FormContent = ({query}) => {
           setPhone={setPhone}
         />
         <AmountInput value={amount} max={max} onChange={setAmount} />
+        <CostBreadown amount={amount} />
         <CheckoutButton
           firstName={firstName}
           lastName={lastName}

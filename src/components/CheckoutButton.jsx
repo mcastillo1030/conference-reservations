@@ -13,12 +13,12 @@ const CheckoutButton = ({
 }) => {
   // const history = useHistory();
   const [message, setMessage] = useState('');
+  const [checkoutUrl, setCheckoutUrl] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // let orderId = false;
-    let checkoutUrl = false;
     setIsLoading(true);
     axios
       .post(`${import.meta.env.VITE_API_URL}/new-order`, {
@@ -31,8 +31,10 @@ const CheckoutButton = ({
       .then((res) => {
         const {data} = res;
 
-        checkoutUrl = data.checkout_url;
-        window.location.href = checkoutUrl;
+        setCheckoutUrl(data.checkout_url);
+
+        setMessage('If you are not redirected to the checkout page in 5s, click ');
+        window.location.href = data.checkout_url;
       })
       .catch((err) => {
         if (err.response) {
@@ -44,9 +46,6 @@ const CheckoutButton = ({
         }
 
         console.log(err);
-      })
-      .finally(() => {
-        setIsLoading(false);
       });
   };
 
@@ -76,7 +75,11 @@ const CheckoutButton = ({
 
   return (
     <div className="checkout-button">
-      {message && (<p className="checkout-button__message text-sm text-tangerine-600">{message}</p>)}
+      {message ?
+        (checkoutUrl ?
+          (<p className="checkout-button__message mb-5 text-sm text-tangerine-600">{message} <a href="{checkoutUrl}">here.</a></p>) :
+            (<p className="checkout-button__message mb-5 text-sm text-tangerine-600">{message}</p>)) :
+          ''}
       <p className="checkout-button__wrap flex justify-end items-center gap-x-3">
         {isLoading && (<span className="checkout-button__loader w-[2rem] aspect-square relative"></span>)}
         <button type="button" disabled={!canSubmit} onClick={handleSubmit} className="checkout-button__btn inline-flex items-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs uppercase tracking-widest bg-maize-900 hover:bg-maize-600 focus:bg-maize-600 active:bg-maize-700 focus:outline-none focus:ring-2 focus:ring-maize-950  focus:ring-offset-2 transition ease-in-out duration-150 dark:bg-maize-700/[.5] dark:text-ash-200 dark:hover:bg-maize-700/[.75] dark:hover:text-white dark:focus:bg-maize-700/[.75] dark:focus:text-white dark:active:bg-maize-700/[.95] dark:focus:ring-maize-600 dark:focus:ring-offset-gravel-950 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-ash-600 disabled:text-ash-200">Checkout</button>
