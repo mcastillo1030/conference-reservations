@@ -20,7 +20,7 @@ const FormContent = ({query}) => {
     return (
       <span className="block text-sm md:text-base text-start text-tangerine-600 dark:text-tangerine-500">An error has occurred: {error.message}.</span>
     );
-  } else if (!isLoading && data.available <= 0) {
+  } else if (import.meta.env.VITE_APP_STATE === 'down' || (!isLoading && data.available <= 0)) {
     return (
       <span className="block text-sm md:text-base text-start text-tangerine-600 dark:text-tangerine-500">We&apos;re so sorry. There are no bracelets available for purchase at this time. Please check back later.</span>
     );
